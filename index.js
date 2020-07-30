@@ -6,7 +6,7 @@ const keys = require('./keys')
 
 const urls = []
 
-keys.frameToken
+
 
 const getUser = async()=>{
     const response = await axios.get('https://api.frame.io/v2/me', {
