@@ -2,15 +2,16 @@ const axios = require('axios')
 const { JSDOM } = require( "jsdom" );
 const { window } = new JSDOM( "" );
 const $ = require( "jquery" )( window );
+const keys = require('./keys')
 
 const urls = []
 
-
+keys.frameToken
 
 const getUser = async()=>{
     const response = await axios.get('https://api.frame.io/v2/me', {
     headers: {
-        Authorization: `Bearer fio-u-PKwQhbPBnOVyh1Qxqp1IOg078Ymb8kjktqwb0FUxj3w4ZrvBquJQHq56BASan5Si`
+        Authorization: `Bearer ${keys.frameToken}`
     }
     })
 
@@ -24,7 +25,7 @@ const getUser = async()=>{
 const getTeamId = async()=>{
     const response = await axios.get(' https://api.frame.io/v2/accounts/4ea34927-7a59-4aed-9577-cbd3c09a3ea4/teams', {
     headers: {
-        Authorization: `Bearer fio-u-PKwQhbPBnOVyh1Qxqp1IOg078Ymb8kjktqwb0FUxj3w4ZrvBquJQHq56BASan5Si`
+        Authorization: `Bearer ${keys.frameToken}`
     }
     })
     // team id
@@ -35,7 +36,7 @@ const getTeamId = async()=>{
 const getProjects = async()=>{
     const response = await axios.get(' https://api.frame.io/v2/teams/a2e98a0f-13a0-4700-b53e-2d54a9d70c5f/projects', {
     headers: {
-        Authorization: `Bearer fio-u-PKwQhbPBnOVyh1Qxqp1IOg078Ymb8kjktqwb0FUxj3w4ZrvBquJQHq56BASan5Si`
+        Authorization: `Bearer ${keys.frameToken}`
     }
     })
     
@@ -50,7 +51,7 @@ const getAllFiles = async()=>{
     // root_asset_id. Este root_asset_id viene de getProjects
     const response = await axios.get(' https://api.frame.io/v2/assets/4ec27e4c-c2c5-4c4d-be7a-d19624a35257/children', {
     headers: {
-        Authorization: `Bearer fio-u-PKwQhbPBnOVyh1Qxqp1IOg078Ymb8kjktqwb0FUxj3w4ZrvBquJQHq56BASan5Si`
+        Authorization: `Bearer ${keys.frameToken}`
         }
     })
 
@@ -71,7 +72,7 @@ const getSomething = async()=>{
     // root_asset_id. Este root_asset_id viene de getProjects
     const response = await axios.get('https://api.frame.io/v2/assets/4ec27e4c-c2c5-4c4d-be7a-d19624a35257/children?type=folder', {
     headers: {
-        Authorization: `Bearer fio-u-PKwQhbPBnOVyh1Qxqp1IOg078Ymb8kjktqwb0FUxj3w4ZrvBquJQHq56BASan5Si`
+        Authorization: `Bearer ${keys.frameToken}`
     }
     })
     
@@ -84,7 +85,7 @@ const getAllFilesGivenFolder = async()=>{
     // folderId
     const response = await axios.get('https://api.frame.io/v2/assets/766526ec-041d-4c0d-8970-d6c252db471d/children', {
     headers: {
-        Authorization: `Bearer fio-u-PKwQhbPBnOVyh1Qxqp1IOg078Ymb8kjktqwb0FUxj3w4ZrvBquJQHq56BASan5Si`
+        Authorization: `Bearer ${keys.frameToken}`
         }
     })
     
@@ -102,7 +103,7 @@ const getAllFilesGivenFolder = async()=>{
 
 
 
-    var access_token = "98348ad19d19b56e6caafedd5a44f4029baa97fb8331950dab26b3e4cd27c595";
+    var access_token = keys.wistiaToken;
     for(let i = 0; i < length; i++){
         var requestData = $.param({
             access_token: access_token,
